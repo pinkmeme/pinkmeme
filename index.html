@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" translate="no" class="notranslate">
 <head>
 <meta charset="utf-8">
+<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Pink iPhone 16</title>
+<title>봉구 폰</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Noto+Sans+KR:wght@400;500;600;700&display=swap">
@@ -556,6 +557,32 @@ body{background:var(--stage);color:var(--stage-ink);font-family:var(--font);over
 .igb-typing{display:flex;gap:5px;align-items:center;padding:13px 16px!important;animation:pop .25s}
 .igb-typing i{width:8px;height:8px;border-radius:50%;background:#b28a9b;animation:blink 1.2s infinite}
 .igb-typing i:nth-child(2){animation-delay:.2s}.igb-typing i:nth-child(3){animation-delay:.4s}
+/* Clock app */
+.ck{position:absolute;inset:0;background:#000;color:#fff;display:flex;flex-direction:column}
+.screen .ck-pill{height:44px;padding:0 18px;border-radius:22px;background:#1c1c1e;box-shadow:inset 0 0 0 1px #2c2c2e;font-size:17px;font-weight:600;color:#fff}
+.screen .ck-circ{width:44px;height:44px;border-radius:50%;background:#1c1c1e;box-shadow:inset 0 0 0 1px #2c2c2e;display:flex;align-items:center;justify-content:center}
+.ck-scroll{flex:1;overflow-y:auto;padding:0 16px 120px;scrollbar-width:none}
+.ck-scroll::-webkit-scrollbar{display:none}
+.ck h1{margin:18px 0 0;font-size:34px;font-weight:800}
+.ck-sec{display:flex;align-items:center;gap:6px;font-size:20px;font-weight:700;margin-top:34px;padding-bottom:10px;border-bottom:.5px solid #38383a}
+.ck-other{margin-top:56px}
+.ck-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:.5px solid #38383a}
+.ck-none{font-size:17px;color:#8e8e93}
+.screen .ck-set{height:34px;padding:0 12px;border-radius:17px;background:#2c2c2e;color:#ff9f0a;font-size:17px;font-weight:700}
+.ck-al{display:flex;align-items:center;padding:8px 0 10px;border-bottom:.5px solid #38383a;color:#8e8e93}
+.ck-al.on{color:#fff}
+.ck-al .grow{flex:1;min-width:0}
+.ck-tm{font-size:60px;font-weight:200;letter-spacing:-1px;line-height:1.05;font-variant-numeric:tabular-nums}
+.ck-tm small{font-size:28px;font-weight:300;margin-right:2px;letter-spacing:0}
+.ck-lb{font-size:15px;margin-top:2px}
+.screen .ck-sw{width:62px;height:38px;border-radius:19px;background:#39393d;position:relative;flex:none;transition:background .2s}
+.ck-sw::after{content:"";position:absolute;top:3px;left:3px;width:32px;height:32px;border-radius:50%;background:#fff;transition:transform .2s}
+.screen .ck-sw.on{background:#34c759}
+.ck-sw.on::after{transform:translateX(24px)}
+.ck-tabs{position:absolute;left:12px;right:12px;bottom:24px;height:66px;border-radius:33px;background:rgba(28,28,30,.94);box-shadow:inset 0 0 0 1px #2c2c2e;display:flex;align-items:center;padding:0 5px}
+.screen .ck-tabs button{flex:1;height:56px;border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;color:#fff}
+.screen .ck-tabs button.on{background:#2c2c2e;color:#ff9f0a}
+.ck-tabs button.on svg path[stroke="#2a2a2c"]{stroke:#2c2c2e}
 /* Music app */
 .mu{position:absolute;inset:0;background:#fff;color:#000}
 .mu-tools{height:40px;border-radius:20px;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.1);display:flex;align-items:center;gap:22px;padding:0 16px}
@@ -687,7 +714,7 @@ body{background:var(--stage);color:var(--stage-ink);font-family:var(--font);over
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
-<body style="margin:0">
+<body style="margin:0" translate="no">
 
 <div class="stage" id="stage">
   <div class="phone-wrap" id="wrap">
@@ -984,10 +1011,13 @@ const CONFIG = {
     { group: "이전 7일", date: "수요일",       body: "노아 형이랑 가고 싶은 곳\n평냉 맛집\n초보 등산코스\n오하아사 보면서 아침 먹기" },
     { group: "이전 30일", date: "2026. 10. 2.", body: "모니터링\n2절 들어갈 때 박자 계속 밀림\n표정 연습 더 하기" },
   ],
+  // 알람 (24시간 형식 "HH:MM"), on = 켜짐 여부
   ALARMS: [
-    { time: "07:00", label: "기상", on: true },
-    { time: "07:15", label: "다시 알림", on: true },
-    { time: "13:30", label: "수업", on: false },
+    { time: "03:30", label: "알람", on: false },
+    { time: "06:30", label: "알람", on: false },
+    { time: "06:40", label: "알람", on: false },
+    { time: "07:10", label: "알람", on: false },
+    { time: "07:30", label: "알람", on: false },
   ],
   SONGS: [
     { title: "분홍빛 오후", artist: "Lumi", len: 214, c1: "#f49ab6", c2: "#b65f84" },
@@ -1394,14 +1424,23 @@ const APPS = {
     </div>`;
   },
   clock() {
-    return `<div class="nav"><div style="display:flex;justify-content:space-between">${back("홈")}<button class="edit" data-act="soon" style="color:#ff9f0a;font-size:17px">편집</button></div><h1>알람</h1></div>
-      <div class="scroll"><div style="font-weight:600;font-size:17px;margin-top:6px">⏾ 수면 | 기상</div><div style="color:#8e8e93;font-size:14px;border-bottom:.5px solid #2c2c2e;padding:6px 0 12px">알람 없음</div>
-      <div style="font-weight:600;font-size:17px;margin-top:16px">기타</div>
-      ${S.alarms.map((a, k) => {
-        const [h, m] = a.time.split(":").map(Number);
-        return `<div class="alarm ${a.on ? "" : "off"}"><div style="flex:1"><div class="tm"><small>${h < 12 ? "오전" : "오후"}</small>${((h + 11) % 12) + 1}:${String(m).padStart(2, "0")}</div><div class="lb">${esc(a.label)}</div></div><button class="switch ${a.on ? "on" : ""}" data-act="alarm" data-i="${k}" aria-label="알람 켜기/끄기"></button></div>`;
-      }).join("")}</div>
-      <div class="tabbar">${[["세계 시계", I.globe], ["알람", I.bell], ["스톱워치", I.clockI], ["타이머", I.clockI]].map(([n, ic], k) => `<button class="${k === 1 ? "on" : ""}" data-act="${k === 1 ? "" : "soon"}">${ic}${n}</button>`).join("")}</div>`;
+    const tabs = [["세계 시계", `<svg width="30" height="30" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3 3 16 0 19M12 2.5c-3 3-3 16 0 19M4.5 7h15M4.5 17h15"/></g></svg>`],
+      ["알람", `<svg width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8.3" fill="currentColor"/><path d="M12 8.5V13h3.3" fill="none" stroke="#2a2a2c" stroke-width="2" stroke-linecap="round"/><path d="M3.5 6.5 7 3.2M20.5 6.5 17 3.2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>`],
+      ["스톱워치", `<svg width="30" height="30" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="8.3" fill="currentColor"/><path d="M12 9.5v4.5" stroke="#000" stroke-width="2" stroke-linecap="round"/><path d="M12 2.5v2.5M10 2.5h4M18.5 6l1.5-1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`],
+      ["타이머", `<svg width="30" height="30" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="49 8" transform="rotate(-78 12 12)"/><path d="M12 12 8.3 7.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>`]];
+    return `<div class="ck">
+      <div class="ph-top"><button class="ck-pill" data-act="soon">편집</button><span></span><button class="ck-circ" data-act="soon" aria-label="알람 추가"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></button></div>
+      <div class="ck-scroll">
+        <h1>알람</h1>
+        <div class="ck-sec"><svg width="26" height="16" viewBox="0 0 26 16"><path d="M2 14V3M2 9h22v5M24 9V7a3 3 0 0 0-3-3h-8v5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><rect x="4.5" y="5" width="6" height="4" rx="2" fill="#fff"/></svg>수면 | 기상</div>
+        <div class="ck-row"><span class="ck-none">알람 없음</span><button class="ck-set" data-act="soon">설정</button></div>
+        <div class="ck-sec ck-other">기타</div>
+        ${S.alarms.map((a, k) => { const [h, m] = a.time.split(":").map(Number);
+          return `<div class="ck-al ${a.on ? "on" : ""}"><div class="grow"><div class="ck-tm"><small>${h < 12 ? "오전" : "오후"}</small>${((h + 11) % 12) + 1}:${String(m).padStart(2, "0")}</div><div class="ck-lb">${esc(a.label)}</div></div>
+            <button class="ck-sw ${a.on ? "on" : ""}" data-act="alarm" data-i="${k}" aria-label="알람 켜기/끄기"></button></div>`; }).join("")}
+      </div>
+      <div class="ck-tabs">${tabs.map(([n, ic], k) => `<button class="${k === 1 ? "on" : ""}" ${k === 1 ? "" : 'data-act="soon"'}>${ic}<span>${n}</span></button>`).join("")}</div>
+    </div>`;
   },
   music() {
     const blk = 'fill="#111"';
